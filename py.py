@@ -44,5 +44,41 @@
 
 # print(fact(10))
 
-assert spam < 10
-assert spam.lower() == bacon
+# Asserts
+# assert spam < 10
+# assert spam.lower() == bacon, "spam and bacon should be same"
+
+# context managers
+
+# class CtxManager:
+#     def __init__(self) -> None:
+#         print("made obj")
+#         # self.file = open(...)
+
+#     def __enter__(self):
+#         print("entered context")
+#         return "hello from context"
+#         # return self.file
+
+#     def __exit__(self, *args):
+#         print("exit context")
+#         # self.file.close()
+
+# with CtxManager() as mg:
+#     print(mg)
+#     print("printed in context")
+
+# Example for file open context manager
+
+class FileOpen:
+    def __init__(self, *args) -> None:
+        self.file = open(*args)
+
+    def __enter__(self):
+        return self.file
+
+    def __exit__(self, *args):
+        self.file.close()
+
+with FileOpen("test.txt", "w") as f:
+    print(f.write("foobar"))
